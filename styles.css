@@ -1,0 +1,41 @@
+.calc-body {
+    background-color: brown;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+h2 {
+    background-color: gray;
+    margin: 10px 25px 25px;
+}
+
+button {
+    width: 25px;
+    height: 25px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.number-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.operator {
+    color: white;
+    background-color: black;
+}
+
+.buttons-top-row, .buttons-bottom-row, .buttons-middle-row {
+    display: flex;
+    gap: 10px;
+}
