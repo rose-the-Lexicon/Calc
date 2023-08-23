@@ -6,11 +6,20 @@
     width: fit-content;
     padding: 10px;
     border-radius: 10px;
+    text-align: center;
 }
 
 h2 {
     background-color: gray;
     margin: 10px 25px 25px;
+    width: 115px;
+    align-self: center;
+}
+
+#clear {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto 10px;
 }
 
 button {
