@@ -60,8 +60,6 @@ function operatorButtons () {
                 } else {
                     num2 = parseFloat(screen.textContent);
                     num1 = operate(num1, operator, num2);
-                    console.log(num1);
-                    console.log(num2);
                     screen.textContent = (e.id);
                     operator = screen.textContent;
                 }
