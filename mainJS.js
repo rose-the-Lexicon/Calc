@@ -1,23 +1,37 @@
 let num1 = 0;
 let operator = "";
 let num2 = 0;
+let result = false;
 const screen = document.getElementById("screen");
+
+const reset = () => {
+    num1 = 0;
+    num2 = 0;
+    operator = 0;
+}
 
 function operate (num, operator, numTwo) {
     num = parseInt(num);
     numTwo = parseInt(numTwo);
+    let whatDo = operator; 
+    reset();
 
-    if (operator === "+") {
+    if (whatDo === "+") {
         screen.textContent = num + numTwo;
+        resultNum = num + numTwo;
+        
         return num + numTwo;
-    } else if (operator === "-") {
+    } else if (whatDo === "-") {
         screen.textContent = num - numTwo;
+        resultNum = num - numTwo;
         return num - numTwo;
-    } else if (operator === "*") {
+    } else if (whatDo === "*") {
         screen.textContent = num * numTwo;
+        resultNum = num * numTwo;
         return num * numTwo;
-    } else if (operator === "/") {
+    } else if (whatDo === "/") {
         screen.textContent = num / numTwo;
+        resultNum = num / numTwo;
         return num / numTwo;
     }
 }
@@ -27,6 +41,7 @@ function getCalculation () {
     equals.addEventListener("click", () => {
         num2 = parseFloat(screen.textContent);
         operate(num1, operator, num2);
+        result = true;
     })
 }
 
@@ -53,15 +68,22 @@ function operatorButtons () {
     operateButtons.forEach(e => {
         if (e.id !== "=") {
             e.addEventListener("click", () => {
-                if (operator === "") {
+                if (result === false) {
+                    if (operator === "") {
+                        num1 = parseFloat(screen.textContent);
+                        screen.textContent = (e.id);
+                        operator = screen.textContent;
+                    } else {
+                        num2 = parseFloat(screen.textContent);
+                        num1 = operate(num1, operator, num2);
+                        screen.textContent = (e.id);
+                        operator = screen.textContent;
+                    }
+                } else {
                     num1 = parseFloat(screen.textContent);
                     screen.textContent = (e.id);
                     operator = screen.textContent;
-                } else {
-                    num2 = parseFloat(screen.textContent);
-                    num1 = operate(num1, operator, num2);
-                    screen.textContent = (e.id);
-                    operator = screen.textContent;
+                    num2 = 0;
                 }
             })
         }
@@ -70,7 +92,6 @@ function operatorButtons () {
 
 function clear() {
     const clearButton = document.getElementById("clear");
-    const allButtons = document.querySelectorAll("button");
 
     clearButton.addEventListener("click", () => {
         screen.textContent = "";
