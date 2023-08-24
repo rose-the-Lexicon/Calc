@@ -1,7 +1,6 @@
-let num1;
-let operator;
-let num2;
-let result;
+let num1 = 0;
+let operator = "";
+let num2 = 0;
 const screen = document.getElementById("screen");
 
 function operate (num, operator, numTwo) {
@@ -25,7 +24,6 @@ function operate (num, operator, numTwo) {
 
 function getCalculation () {
     const equals = document.getElementById("=");
-    console.log(equals);
     equals.addEventListener("click", () => {
         num2 = parseFloat(screen.textContent);
         operate(num1, operator, num2);
@@ -55,11 +53,32 @@ function operatorButtons () {
     operateButtons.forEach(e => {
         if (e.id !== "=") {
             e.addEventListener("click", () => {
-                num1 = parseFloat(screen.textContent);
-                screen.textContent = (e.id);
-                operator = screen.textContent;
+                if (operator === "") {
+                    num1 = parseFloat(screen.textContent);
+                    screen.textContent = (e.id);
+                    operator = screen.textContent;
+                } else {
+                    num2 = parseFloat(screen.textContent);
+                    num1 = operate(num1, operator, num2);
+                    console.log(num1);
+                    console.log(num2);
+                    screen.textContent = (e.id);
+                    operator = screen.textContent;
+                }
             })
         }
+    })
+}
+
+function clear() {
+    const clearButton = document.getElementById("clear");
+    const allButtons = document.querySelectorAll("button");
+
+    clearButton.addEventListener("click", () => {
+        screen.textContent = "";
+        num1 = 0;
+        num2 = 0;
+        operator = "";
     })
 }
 
@@ -67,3 +86,4 @@ function operatorButtons () {
 screenUpdate();
 operatorButtons();
 getCalculation();
+clear();
