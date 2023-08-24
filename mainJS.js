@@ -16,16 +16,9 @@ function operate (num, operator, numTwo) {
     let whatDo = operator; 
     reset();
 
-    if (num2 === 0) {
-        reset();
-        screen.textContent = "Nice try";
-        return;
-    }
-
     if (whatDo === "+") {
         screen.textContent = num + numTwo;
         resultNum = num + numTwo;
-        
         return num + numTwo;
     } else if (whatDo === "-") {
         screen.textContent = num - numTwo;
@@ -36,6 +29,15 @@ function operate (num, operator, numTwo) {
         resultNum = num * numTwo;
         return num * numTwo;
     } else if (whatDo === "/") {
+        if (num2 === parseInt(0)) {
+            reset();
+            screen.textContent = "Nice try";
+            setTimeout(() => {
+                screen.textContent = "";
+                return;
+            }, 1000)
+            return;
+        }
         screen.textContent = +(num / numTwo).toFixed(2);
         resultNum = +(num / numTwo).toFixed(2);
         return num / numTwo;
